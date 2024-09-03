@@ -26,9 +26,17 @@
             User.Colors = ShowColor(User.Name);
 
 
-            Console.WriteLine(User.Name);
-            foreach (var color  in User.Colors) Console.WriteLine(color);
+            //Console.WriteLine(User.Name);
+            //foreach (var color  in User.Colors) Console.WriteLine(color);
 
+            static void ShowCols (string name, params string[] favcolors)
+            {
+                Console.WriteLine(name);
+                foreach ( string col  in favcolors) Console.WriteLine(col);
+                
+            }
+
+            ShowCols(User.Name, User.Colors);
 
             //User.Dishes = new string[5];
             //for (int i = 0; i < 5; i++)
