@@ -27,7 +27,8 @@
 
 
             Console.WriteLine(User.Name);
-            Console.WriteLine(User.Colors[0] + User.Colors[1]);
+            foreach (var color  in User.Colors) Console.WriteLine(color);
+
 
             //User.Dishes = new string[5];
             //for (int i = 0; i < 5; i++)
