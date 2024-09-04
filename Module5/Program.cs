@@ -8,10 +8,10 @@
             if (modif.Length > 2)
             {
                 modif = modif.Remove(0, 2);
+                Console.WriteLine("..." + modif);
+                if (depth > 1) Echo(modif, (byte) (depth - 1));
             }
 
-            Console.WriteLine("..." + modif);
-            if (depth > 1) Echo(modif, (byte) (depth - 1));
         }
         static void Main(string[] args)
         {
