@@ -2,17 +2,29 @@
 {
     internal class Program
     {
-        static long Factorio(int x) // don't want to use decimal, long is enough 
+        static long Power(int x, byte pow)
         {
-            if (x == 0) return 1; else return x * Factorio(x - 1);
-
-            
+            if (pow == 0)
+            {
+                return 1;
+            }
+            else
+            {
+                if (pow == 1)
+                {
+                    return x;
+                }
+                else
+                {
+                    return x * Power(x, --pow);
+                }
+            }
         }
         static void Main(string[] args)
         {
-            Console.Write("Enter number: ");
+            Console.Write("Enter number and then power for it: ");
             
-            Console.WriteLine(Factorio(int.Parse(Console.ReadLine())));
+            Console.WriteLine(Power(int.Parse(Console.ReadLine()), byte.Parse(Console.ReadLine())));
         }
     }
 }
