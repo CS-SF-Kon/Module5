@@ -20,7 +20,7 @@
             byte Age = NumChecker();
 
             Console.Write("Do you have a pet (y/n): ");
-            bool HaveAPet = Console.ReadLine() == "y" ? true : false;
+            bool HaveAPet = Console.ReadLine() == "y";
             byte PetsCount;
             string[] PetNames;
             if (HaveAPet)
