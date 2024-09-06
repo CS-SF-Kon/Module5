@@ -20,9 +20,29 @@
             byte Age = NumChecker();
 
             Console.Write("Do you have a pet (y/n): ");
-            bool HaveAPet = Console.ReadLine() == "y";
-            byte PetsCount;
+            bool HaveAPet = false;
+            bool PetFlag = false;
+            byte PetsCount = 0;
             string[] PetNames;
+            do { // мне кажется, тут можно было сделать изящнее через swich/case, но если присваивать значения внутри такой конструкции, ругается, что HaveAPet не получится вернуть, потому что ей ничего не присвоено...
+                string Symb = Console.ReadLine();
+                if (Symb == "y")
+                {
+                    HaveAPet = true;
+                    PetFlag = true;
+                }
+                else if (Symb == "n")
+                {
+                    HaveAPet = false;
+                    PetFlag = true;
+                }
+                else
+                {
+                    Console.Write("Wrong symbol! Try again: ");
+                }
+            }
+            while (!PetFlag);
+
             if (HaveAPet)
             {
                 Console.Write("How many pets do you have: ");
@@ -32,9 +52,7 @@
             }
             else
             {
-                PetsCount = 0;
-                PetNames = new string[1];
-                PetNames[0] = "none";
+                PetNames = new string[1] { "none" };
             }
 
             Console.Write("How many favourite colors do you have: ");
@@ -65,7 +83,7 @@
             return PetNames;
         }
 
-        static string[] FavColsMeth(byte FavColCount)
+        static string[] FavColsMeth(byte FavColCount) // этот метод полная копия предыдущего, что противореячит принципу DRY, но из задания я понял, что это должны быть разные методы
         {
             string[] FavCols = new string[FavColCount];
             for (int i = 0; i < FavColCount; i++)
@@ -80,12 +98,10 @@
         {
             byte num = 0;
             bool Check = byte.TryParse(Console.ReadLine(), out num);
-            if (!Check || num <= 0) // ЧЗХ я должен иметь хотя бы одного питомца или любимый цвет, ну если задача просит, то ладно
+            if (!Check || num <= 0) // ЧЗХ я должен иметь хотя бы один любимый цвет, ну если задача просит, то ладно
             {
-                Console.WriteLine("Wrong number format! Try again");
-                num = NumChecker(); /* вот тут не понял, но почему-то, если просто в этом блоке рекурсивно вызывать NumChecker(), не в переменную, как сейчас,...
-						... и воспроизвести неправильный ввод, то программа, как и должна, попросит ввести повторно, примет верное число больше нуля, и, казалось бы, вернёт его,...
-						... но почему-то после возврата правильного num опять перескочит на рекурсивный вызов и вернёт 0 вместо правильного числа, и только после этого выйдет*/
+                Console.Write("Wrong number format! Try again: ");
+                num = NumChecker();
             }
             return num;
         }
